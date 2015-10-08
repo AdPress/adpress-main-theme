@@ -142,7 +142,7 @@ $brad_shortcodes['video'] = array(
 		)	
 	),
 		
-	'shortcode' => '[video type="{{type}}" id="{{id}}" autoplay="{{autoplay}}"]',
+	'shortcode' => '[custom_video type="{{type}}" id="{{id}}" autoplay="{{autoplay}}"]',
 );
 
 

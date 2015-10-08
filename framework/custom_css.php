@@ -682,6 +682,7 @@ function brad_custom_css_styles(){
 
 
   .button ,
+  .button:focus ,
   input[type="submit"]{
 	  background-color:<?php echo $brad_data['color_buttonbg'];?>;
 	  color:<?php echo $brad_data['color_buttontext'];?>;
@@ -850,6 +851,7 @@ function brad_custom_css_styles(){
   .post-meta-data.style2 .post-meta-cats,
   .post-meta-data.style2 .post-meta-cats a,
   .button.button_alternateprimary,
+  .button.button_alternateprimary:focus,
   ul.product_list_widget li a:hover,
   .post-meta-data > span a:hover,
   .quantity .minus, .quantity .plus,
@@ -873,6 +875,7 @@ function brad_custom_css_styles(){
     ul.styled-list li i ,
 	ul.styled-list.style2 li i ,
    .button.button_alternateprimary,
+   .button.button_alternateprimary:focus,
    .shop_table .remove:hover,
    .commentlist .reply a ,
    .quantity .minus,
@@ -932,6 +935,9 @@ function brad_custom_css_styles(){
 	  background-color:<?php echo $brad_data['color_primary'];?>!important;
   }
   
+  .button.button_alternateprimary:hover{
+	color:#fff;
+}
  
 
 <?php echo $brad_data['custom_css']; ?>

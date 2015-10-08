@@ -1,23 +1,16 @@
 <?php
-add_action('widgets_init', 'recent_posts_load_widgets');
-
-function recent_posts_load_widgets()
-{
-	register_widget('recent_posts_Widget');
-}
 
 class recent_posts_Widget extends WP_Widget {
 	
-	function recent_posts_Widget()
-	{
-		$widget_ops = array('classname' => 'recent_posts', 'description' => 'Recent Posts with images');
-
-		$control_ops = array('id_base' => 'recent-posts-widget');
-
-		$this->WP_Widget('recent-posts-widget', 'Brad.Recent Posts', $widget_ops, $control_ops);
+	public function __construct() {
+		parent::__construct(
+			'brad_recent_posts_widgets', // Base ID
+			__( 'Brad Recent Posts', 'brad-framework' ), // Name
+			array( 'description' => __( 'Display your posts with images', 'brad-framework' ), ) // Args
+		);
 	}
 	
-	function widget($args, $instance)
+	public function widget($args, $instance)
 	{
 		extract($args);
 		$title = apply_filters('widget_title', $instance['title']);
@@ -57,7 +50,7 @@ class recent_posts_Widget extends WP_Widget {
 		<?php echo $after_widget;
 	}
 	
-	function update($new_instance, $old_instance)
+	public function update($new_instance, $old_instance)
 	{
 		$instance = $old_instance;
 
@@ -67,7 +60,7 @@ class recent_posts_Widget extends WP_Widget {
 		return $instance;
 	}
 
-	function form($instance)
+	public function form($instance)
 	{
 		$defaults = array('title' => 'Recent posts', 'number' => 4);
 		$instance = wp_parse_args((array) $instance, $defaults); ?>

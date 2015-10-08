@@ -1618,15 +1618,19 @@ var mainNavigation = {
 	/*-------------------------------------------------------------------------*/
 	/* Double Section height Fix
 	/*-------------------------------------------------------------------------*/
+		/*-------------------------------------------------------------------------*/
+	/* Double Section height Fix
+	/*-------------------------------------------------------------------------*/
 	function resizeDoubleSectionht(){
-		$('.double-section').each(function() {
+		$('.equal-cheight-yes').each(function() {
 		   var element = $(this), 
-	     childElements = element.find('.section-container'),
+	     childElements = element.find('> .section-column > .inner-content'),
 	            tallest = 0 ;
 		
 		 childElements.css('height','auto');
 
-		if( $(window).width() > 800){		
+	
+		 if( $(window).width() > 800){		
 		  element.imagesLoaded(function(){	
 			childElements.each(function() {
 			  var childElement = $(this); 
@@ -1635,15 +1639,8 @@ var mainNavigation = {
 			  }
 		     });
 		  
-		  childElements.each(function(index, element) {
-			  
-			  if( $(this).hasClass('alignv-center-yes')){
-			      var $height = $(this).outerHeight();
-			      $(' > .inner-content' , $(this)).css({'margin-top': ( tallest - $height) / 2 + 'px'});
-			  }
-		  });
-		  
 		  childElements.css('height', tallest+'px');
+		
 		});
 	  }
     });
@@ -1653,7 +1650,6 @@ var mainNavigation = {
     $(window).on("debouncedresize", function(){
 	  resizeDoubleSectionht();
 	});
-	
 	
 	/* ------------------------------------------------------------------------ */
 	/* Contact Form */

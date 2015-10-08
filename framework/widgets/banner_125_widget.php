@@ -3,25 +3,18 @@
    banners widgets
 **********************************************/
    
-add_action('widgets_init', 'ad_125_125_load_widgets');
-
-function ad_125_125_load_widgets()
-{
-	register_widget('Ad_125_125_Widget');
-}
 
 class Ad_125_125_Widget extends WP_Widget {
 	
-	function Ad_125_125_Widget()
-	{
-		$widget_ops = array('classname' => 'ad_125_125', 'description' => 'display 125x125 ads.');
-
-		$control_ops = array('id_base' => 'ad_125_125-widget');
-
-		$this->WP_Widget('ad_125_125-widget', 'Brad.125x125 Ads', $widget_ops, $control_ops);
+	public function __construct() {
+		parent::__construct(
+			'add_125_125_widget', // Base ID
+			__( 'Brad 125*125 Adds Widget', 'brad-framework' ), // Name
+			array( 'description' => __( 'Display Your 125x125 Adds', 'brad-framework' ), ) // Args
+		);
 	}
 	
-	function widget($args, $instance)
+	public function widget($args, $instance)
 	{
 		extract($args);
 
@@ -40,7 +33,7 @@ class Ad_125_125_Widget extends WP_Widget {
 		<?php
 	}
 	
-	function update($new_instance, $old_instance)
+	public function update($new_instance, $old_instance)
 	{
 		$instance = $old_instance;
 
@@ -56,7 +49,7 @@ class Ad_125_125_Widget extends WP_Widget {
 		return $instance;
 	}
 
-	function form($instance)
+	public function form($instance)
 	{
 		$defaults = array();
 		$instance = wp_parse_args((array) $instance, $defaults); ?>

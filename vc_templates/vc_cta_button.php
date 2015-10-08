@@ -24,13 +24,13 @@
 
      if ( $target == 'same' || $target == '_self' ) { $target = ''; }
      if ( $target != '' ) { $target = ' target="'.$target.'"'; }	 
-     $color = ( $color != '' ) ? ' button_'.$color : '';
+     $color = ( $color != '' ) ? 'button_'.$color.' button_color_'.$color : '';
      $size = ( $size != '' && $size != 'button_large' ) ? ' button_'.$size : ' '.$size;
 	 
 	 if($second_title != ""){
 		 if ( $second_target == 'same' || $second_target == '_self' ) { $second_target = ''; }
          if ( $second_target != '' ) { $second_target = ' target="'.$second_target.'"'; }	 
-         $second_color = ( $second_color != '' ) ? ' button_'.$second_color : '';
+         $second_color = ( $second_color != '' ) ? 'button_'.$color.' button_color_'.$second_color : '';
          $second_size = ' button_'.$second_size ;
 	 }
 	 
@@ -75,6 +75,6 @@
 	else{
 		$output .= '<h3>'. $call_text . $second_button  .$button .'</h3>';
 	}
-	if( $content != '') { $output .= '<div>'. brad_js_remove_wpautop($content,true) .'</div>';}
+	if( $content != '') { $output .= '<div>'. wpb_js_remove_wpautop($content,true) .'</div>';}
     $output .= "\n\t".'</div>' . $this->endBlockComment('.call-to-action') . "\n";
     echo $output;

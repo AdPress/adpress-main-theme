@@ -1,28 +1,24 @@
+
 <?php 
 
 
 /*---------------------------------------------------------------------------------*/
 /* Facebook widget */
 /*---------------------------------------------------------------------------------*/
-add_action('widgets_init', 'facebook_like_load_widgets');
 
-function facebook_like_load_widgets()
-{
-	register_widget('Facebook_Like_Widget');
-}
 
 class Facebook_Like_Widget extends WP_Widget {
 	
-	function Facebook_Like_Widget()
-	{
-		$widget_ops = array('classname' => 'facebook_like', 'description' => 'Adds support for Facebook Like Box.');
-
-		$control_ops = array('id_base' => 'facebook-like-widget');
-
-		$this->WP_Widget('facebook-like-widget', 'Brad.Facebook Like Box', $widget_ops, $control_ops);
+	
+	public function __construct() {
+		parent::__construct(
+			'facebook_like_widget', // Base ID
+			__( 'Brad Facebook Like Box', 'brad-framework' ), // Name
+			array( 'description' => __( 'Add Support For Facebook Like Box', 'brad-framework' ), ) // Args
+		);
 	}
 	
-	function widget($args, $instance)
+	public function widget($args, $instance)
 	{
 		extract($args);
 
@@ -30,22 +26,20 @@ class Facebook_Like_Widget extends WP_Widget {
 		$page_url = esc_attr($instance['page_url']) ;
 		$width = esc_attr($instance['width']);
 		$color_scheme = esc_attr($instance['color_scheme']);
-		$show_faces = isset($instance['show_faces']) ? 'true' : 'false';
-		$show_stream = isset($instance['show_stream']) ? 'true' : 'false';
-		$show_header = isset($instance['show_header']) ? 'true' : 'false';
-		$height = '65';
+		$show_faces = $instance['show_faces'] == true ? 'true' : 'false';
+		$show_stream = $instance['show_stream'] == true  ? 'true' : 'false';
+		$show_header = $instance['show_header'] == true  ? 'true' : 'false';
+		$height = '70';
 		
 		if($show_faces == 'true') {
-			$height = '260';
+			$height = '214';
 		}
 		
 		if($show_stream == 'true') {
-			$height = '600';
+			$height = '540';
 		}
 		
-		if($show_header == 'true') {
-			$height = '600';
-		}
+	
 		
 		echo $before_widget;
 
@@ -54,13 +48,13 @@ class Facebook_Like_Widget extends WP_Widget {
 		}
 		
 		if($page_url): ?>
-		<iframe src="http://www.facebook.com/plugins/likebox.php?href=<?php echo urlencode($page_url); ?>&amp;width=<?php echo $width; ?>&amp;colorscheme=<?php echo $color_scheme; ?>&amp;show_faces=<?php echo $show_faces; ?>&amp;stream=<?php echo $show_stream; ?>&amp;header=<?php echo $show_header; ?>&amp;height=<?php echo $height; ?>" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:<?php echo $width; ?>px; height: <?php echo $height; ?>px;" allowTransparency="true"></iframe>
+		<iframe src="http://www.facebook.com/plugins/likebox.php?href=<?php echo urlencode($page_url); ?>&amp;width=<?php echo $width; ?>&amp;colorscheme=<?php echo $color_scheme; ?>&amp;show_faces=<?php echo $show_faces; ?>&amp;stream=<?php echo $show_stream; ?>&amp;header=<?php echo $show_header; ?>" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:<?php echo $width; ?>px; height: <?php echo $height; ?>px; max-width:100%;" allowTransparency="true"></iframe>
 		<?php endif;
 		
 		echo $after_widget;
 	}
 	
-	function update($new_instance, $old_instance)
+	public function update($new_instance, $old_instance)
 	{
 		$instance = $old_instance;
 
@@ -75,9 +69,9 @@ class Facebook_Like_Widget extends WP_Widget {
 		return $instance;
 	}
 
-	function form($instance)
+	public function form($instance)
 	{
-		$defaults = array('title' => 'Find us on Facebook', 'page_url' => '', 'width' => '268', 'color_scheme' => 'light', 'show_faces' => 'on', 'show_stream' => false, 'show_header' => false);
+		$defaults = array('title' => 'Find us on Facebook', 'page_url' => '', 'width' => '383', 'color_scheme' => 'light', 'show_faces' => 'on', 'show_stream' => false, 'show_header' => false);
 		$instance = wp_parse_args((array) $instance, $defaults); ?>
 		
 		<p>

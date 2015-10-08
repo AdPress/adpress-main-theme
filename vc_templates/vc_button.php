@@ -49,7 +49,7 @@
 	   }
 	   
 	   if( $style == 'custom'):
-	      $output .= "<style>#brad_button_{$button_id}{color:{$acolor};background-color:{$color};border:".intval($bw)."px solid {$bcolor};}#brad_button_{$button_id}:hover{color:{$acolor_hover};background-color:{$color_hover};border-color:{$bcolor_hover};}</style>"; 
+	      $output .= "<style>#brad_button_{$button_id} , #brad_button_{$button_id}:focus{color:{$acolor};background-color:{$color};border:".intval($bw)."px solid {$bcolor};}#brad_button_{$button_id}:hover{color:{$acolor_hover};background-color:{$color_hover};border-color:{$bcolor_hover};}</style>"; 
 	   endif;
 	   
 	   if( $style == 'readmore' && ( $icon_bc != '' || $icon_c != '' || $icon_c_hover != '' || $icon_bgc != '' || $icon_bgc_hover != '' )){

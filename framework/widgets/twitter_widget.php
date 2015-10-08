@@ -4,15 +4,16 @@
 /******************************************************/		 
 class widget_twitter extends WP_Widget { 
 	
-	// Widget Settings
-	function widget_twitter() {
-		$widget_ops = array('description' => __('Display your latest Tweets','brad-framework') );
-		$control_ops = array( 'id_base' => 'twitter' );
-		$this->WP_Widget( 'twitter', __('Brad.Twitter Widget','brad-framework'), $widget_ops, $control_ops );
+	public function __construct() {
+		parent::__construct(
+			'widget_twitter', // Base ID
+			__( 'Brad Twitter Widget', 'brad-framework' ), // Name
+			array( 'description' => __( 'Display your Tweets', 'brad-framework' ), ) // Args
+		);
 	}
 	
 	// Widget Output
-	function widget($args, $instance) {
+	public function widget($args, $instance) {
 
 		extract($args);
 		$title = apply_filters('widget_title', $instance['title']);
@@ -30,7 +31,7 @@ class widget_twitter extends WP_Widget {
 	}
 	
 	
-	function update($new_instance, $old_instance)
+	public function update($new_instance, $old_instance)
 	{
 		$instance = $old_instance;
 
@@ -41,7 +42,7 @@ class widget_twitter extends WP_Widget {
 		return $instance;
 	}
 
-     function form($instance) {
+     public function form($instance) {
 		 
 		// Set up some default widget settings
 		$defaults = array('title' => 'Latest Tweets', 'twitter_id' => '', 'count' => 5, 'consumer_key' => '', 'consumer_secret' => '' , 'access_token' => '' , 'access_token_secret' => '');
@@ -65,11 +66,4 @@ class widget_twitter extends WP_Widget {
 <?php
 	}
 }	
-
-// Add Widget
-function widget_twitter_init() {
-	register_widget('widget_twitter');
-}
-add_action('widgets_init', 'widget_twitter_init');
-
 ?>

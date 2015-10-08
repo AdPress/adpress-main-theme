@@ -188,14 +188,27 @@ define( 'RWMB_DIR', trailingslashit( get_template_directory() . '/framework/meta
 require_once RWMB_DIR . 'meta-box.php';
 include get_template_directory().'/framework/metabox.php';
 
-/* Load Widgets */
+include_once(get_template_directory().'/framework/widgets/twitter_widget.php');
 include_once(get_template_directory().'/framework/widgets/flickr_widget.php'); 
 include_once(get_template_directory().'/framework/widgets/facebook_widget.php');
-include_once(get_template_directory().'/framework/widgets/twitter_widget.php');
 include_once(get_template_directory().'/framework/widgets/banner_125_widget.php');
 include_once(get_template_directory().'/framework/widgets/portfolios_widget.php');
 include_once(get_template_directory().'/framework/widgets/recent_posts.php');
 include_once(get_template_directory().'/framework/widgets/embed_video.php');	
+
+
+
+add_action('widgets_init', 'brad_register_widgets');
+
+function brad_register_widgets(){
+	register_widget('Ad_125_125_Widget');
+	register_widget('widget_embed');
+	register_widget('widget_flickr');
+	register_widget('portfolios_Widget');
+	register_widget('recent_posts_Widget');
+	register_widget('widget_twitter');	
+	register_widget('Facebook_Like_Widget');
+}	
 
 /**
  * Force Visual Composer to initialize as "built into the theme". This will hide certain tabs under the Settings->Visual Composer page
@@ -268,7 +281,7 @@ function brad_register_required_plugins() {
             'slug'			=> 'revslider', // The plugin slug (typically the folder name)
             'source'			=> get_template_directory_uri() . '/framework/plugins/revslider.zip', // The plugin source
             'required'			=> true, // If false, the plugin is only 'recommended' instead of required
-            'version'			=> '4.6.92', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+            'version'			=> '5.0.9', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
             'force_activation'		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
             'force_deactivation'	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
             'external_url'		=> '', // If set, overrides default API URL and points to an external URL
@@ -279,7 +292,7 @@ function brad_register_required_plugins() {
             'slug'			=> 'js_composer', // The plugin slug (typically the folder name)
             'source'			=> get_template_directory_uri() . '/framework/plugins/js_composer.zip', // The plugin source
             'required'			=> true, // If false, the plugin is only 'recommended' instead of required
-            'version'			=> '4.5', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+            'version'			=> '4.7.4', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
             'force_activation'		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
             'force_deactivation'	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
             'external_url'		=> '', // If set, overrides default API URL and points to an external URL

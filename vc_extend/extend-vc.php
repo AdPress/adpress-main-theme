@@ -2459,50 +2459,42 @@ vc_map( array(
 	array(
       "type" => "textfield",
       "heading" => __("Twitter link", "brad-framework"),
-      "param_name" => "twitter" ,
-	  "dependency" => Array('element' => "social_links", 'value' => array('twitter'))
+      "param_name" => "twitter" 
     ),
 	array(
       "type" => "textfield",
       "heading" => __("Facebook link", "brad-framework"),
-      "param_name" => "facebook" ,
-	  "dependency" => Array('element' => "social_links", 'value' => array('facebook'))
+      "param_name" => "facebook"
     ),
 	array(
       "type" => "textfield",
       "heading" => __("linkedin link", "brad-framework"),
-      "param_name" => "linkedin" ,
-	  "dependency" => Array('element' => "social_links", 'value' => array('linkedin'))
+      "param_name" => "linkedin" 
     ),
 	array(
       "type" => "textfield",
       "heading" => __("youtube link", "brad-framework"),
-      "param_name" => "youtube" ,
-	  "dependency" => Array('element' => "social_links", 'value' => array('youtube'))
+      "param_name" => "youtube" 
     ),
 	array(
       "type" => "textfield",
       "heading" => __("google link", "brad-framework"),
-      "param_name" => "google" ,
-	  "dependency" => Array('element' => "social_links", 'value' => array('google'))
+      "param_name" => "google" 
     ),
 	array(
       "type" => "textfield",
       "heading" => __("behance link", "brad-framework"),
-      "param_name" => "behance" ,
-	  "dependency" => Array('element' => "social_links", 'value' => array('behance'))
+      "param_name" => "behance" 
     ),
 	array(
       "type" => "textfield",
       "heading" => __("dribbble link", "brad-framework"),
-      "param_name" => "dribbble" ,
-	  "dependency" => Array('element' => "social_links", 'value' => array('dribbble'))
+      "param_name" => "dribbble" 
     ),
 	array(
       "type" => "textfield",
       "heading" => __("pinterest link", "brad-framework"),
-      "param_name" => "pinterest" ,
-	  "dependency" => Array('element' => "social_links", 'value' => array('pinterest'))
+      "param_name" => "pinterest" 
     )
 	,
 	array(
@@ -3990,7 +3982,16 @@ vc_map( array(
       "value" => "" ,
 	  "taxonomy" => "category"
 	  ),
-	    	
+	    
+    array(
+      "type" => "textfield",
+      "heading" => __("Posts to Exclude", "brad-framework"),
+      "param_name" => "ex_items",
+      "value" => "" ,
+	  "description" => "Please enter the id of the posts to exclude from list. for ex. 2,3,5" ,
+	  ),
+	    
+					
     $add_order_by,
 	$add_order
   , 
@@ -4679,8 +4680,7 @@ vc_map( array(
       "type" => "dropdown",
       "heading" => __("Button Style/Color", "brad-framework"),
       "param_name" => "bcolor",
-      "value" =>   $button_colors_arr ,
-	  "dependency" => array("element" => "bstyle" , "value" => array("default"))
+      "value" =>   $button_colors_arr
     ),
 	
   
@@ -4688,7 +4688,6 @@ vc_map( array(
       "type" => "dropdown",
       "heading" => __("Button Style/Color on hover", "brad-framework"),
       "param_name" => "bcolor_hover",
-	  "dependency" => array("element" => "bstyle_hover" , "value" => array("default")),
       "value" =>   $button_colors_arr
     ),		
 	

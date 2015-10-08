@@ -4,17 +4,19 @@
 embeding video widget
 ***********************************************/
 
-class widget_embed extends WP_Widget_Text { 
+class widget_embed extends WP_Widget{ 
 	
 	
-	function widget_embed() {
-		$widget_ops = array('description' => __('Display Embed Video','brad-framework') );
-		$control_ops = array( 'id_base' => 'embed' );
-		$this->WP_Widget( 'embed', __('Brad.Embed_Video','brad-framework'), $widget_ops, $control_ops );
+	public function __construct() {
+		parent::__construct(
+			'widget_embed', // Base ID
+			__( 'Brad Video Embed', 'brad-framework' ), // Name
+			array( 'description' => __( 'Display Your Videos', 'brad-framework' ), ) // Args
+		);
 	}
 	
 	
-	function widget($args, $instance) {
+	public function widget($args, $instance) {
 		extract($args);
 		$title = apply_filters('widget_title', $instance['title']);
 		$embed = $instance['embed'];
@@ -34,7 +36,7 @@ class widget_embed extends WP_Widget_Text {
 	}
 	
 	
-	function update( $new_instance, $old_instance ) {  
+	public function update( $new_instance, $old_instance ) {  
 		$instance = $old_instance; 
 		
 		$instance['title'] = strip_tags( $new_instance['title'] );
@@ -45,7 +47,7 @@ class widget_embed extends WP_Widget_Text {
 	}
 	
 	
-	function form($instance) {
+	public function form($instance) {
 		
 		$defaults = array( 'title' => 'Embed Widget', 'embed' => '', 'description' => '' ); 
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
@@ -66,9 +68,5 @@ class widget_embed extends WP_Widget_Text {
     <?php }
 }
 
-function widget_embed_init() {
-	register_widget('widget_embed');
-}
-add_action('widgets_init', 'widget_embed_init');
 
 ?>

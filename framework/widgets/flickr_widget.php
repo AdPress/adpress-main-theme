@@ -4,15 +4,16 @@
 /*---------------------------------------------------------------------------------*/
 class widget_flickr extends WP_Widget { 
 	
-	// Widget Settings
-	function widget_flickr() {
-		$widget_ops = array('description' => __('Display your latest Flickr Photos','brad-framework') );
-		$control_ops = array( 'id_base' => 'flickr' );
-		$this->WP_Widget( 'flickr', __('brad.Flickr','brad-framework'), $widget_ops, $control_ops );
+	public function __construct() {
+		parent::__construct(
+			'widget_flickr', // Base ID
+			__( 'Brad Flickr', 'brad-framework' ), // Name
+			array( 'description' => __( 'Display Your Flickr Photos', 'brad-framework' ), ) // Args
+		);
 	}
 	
 	// Widget Output
-	function widget($args, $instance) {
+	public function widget($args, $instance) {
 		extract($args);
 		$title = apply_filters('widget_title', $instance['title']);
 		$username = esc_attr($instance['username']);
@@ -32,7 +33,7 @@ class widget_flickr extends WP_Widget {
 	}
 	
 	// Update
-	function update( $new_instance, $old_instance ) {  
+	public function update( $new_instance, $old_instance ) {  
 		$instance = $old_instance; 
 		
 		$instance['title'] = esc_attr( $new_instance['title'] );
@@ -43,7 +44,7 @@ class widget_flickr extends WP_Widget {
 	}
 	
 	// Backend Form
-	function form($instance) {
+	public function form($instance) {
 		
 		$defaults = array( 'title' => 'Flickr Widget', 'pics' => '9', 'username' => '' ,'sorting' => 'latest' ); // Default Values
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
@@ -76,11 +77,5 @@ class widget_flickr extends WP_Widget {
 		
     <?php }
 }
-
-// Add Widget
-function widget_flickr_init() {
-	register_widget('widget_flickr');
-}
-add_action('widgets_init', 'widget_flickr_init');
 
 ?>

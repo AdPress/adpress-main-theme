@@ -28,6 +28,7 @@
 			//'show_excerpt'    => '1' ,
 			'excerpt_length'  => '20' ,
 			'max_items'       => '8',
+			'ex_items'  => '',
             'pagination'      => 'default',
 			'excerpt'  => 1 ,
 		  	//'button_style' => '' ,
@@ -47,7 +48,8 @@
 	    'posts_per_page' => (int)$max_items,
 		'paged'          => $page,
 		'order'          => $order,
-		'orderby'        => $orderby
+		'orderby'        => $orderby ,
+		'post__not_in' => wp_parse_id_list( $ex_items ) 
          );
 		 
 	 if(!empty($category)){

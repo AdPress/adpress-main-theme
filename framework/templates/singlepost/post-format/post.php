@@ -1,4 +1,4 @@
-<?php global $brad_data , $brad_includes , $brad_love , $post; ?>
+<?php global $brad_data , $brad_includes , $brad_love , $post , $brad_page_id; ?>
 
 <?php  $img_size = 'fullwidth';
        $brad_includes['load_bxslider'] = true;
@@ -8,7 +8,7 @@
 
 <div id="post-<?php the_ID(); ?>" <?php post_class(' post-standard  post-entries post-single bg-style-'.$brad_data['grid_blog_style'].' '.$ex_class.' clearfix '); ?>>
   <?php  $images =  rwmb_meta('brad_image_list', "type=image&size={$img_size}"); ?>
-  <?php if( $brad_data['blog_align'] == 'top') :?>
+  <?php if( $brad_data['blog_align'] == 'top' && get_post_meta($brad_page_id,'brad_blog-metadata',true) != true ) :?>
   <div class="post-upper text<?php echo $brad_data['blog_upper_align'];?>">
     <?php if($brad_data['check_blog_date'] ||  $brad_data['check_blog_categories'] || is_sticky($post->ID) ):?>
     <div class="post-meta-data style2">
@@ -31,6 +31,8 @@
   
   
   
+  <?php if(get_post_meta($brad_page_id,'brad_blog-featured',true) != true ) : ?>
+ 
   <?php if( !empty($images) || get_post_meta(get_the_ID(),'brad_video_embed',true) != '' || get_post_meta(get_the_ID(),'brad_audio_embed',true) != ''  ) { ?>
   <div class="flexible-slider-container">
     <div class="flexible-slider" data-effect="fade">
@@ -69,9 +71,9 @@
     <?php the_post_thumbnail($img_size); ?>
     </a> </div>
   <?php } ?>
+  <?php endif; ?>
   
-  
-  <?php if( $brad_data['blog_align'] == 'bottom') :?>
+  <?php if( $brad_data['blog_align'] == 'bottom' && get_post_meta($brad_page_id,'brad_blog-metadata',true) != true ) :?>
   <div class="post-upper text<?php echo $brad_data['blog_upper_align'];?>">
     <?php if($brad_data['check_blog_date'] ||  $brad_data['check_blog_categories'] || is_sticky($post->ID) ):?>
     <div class="post-meta-data style2">

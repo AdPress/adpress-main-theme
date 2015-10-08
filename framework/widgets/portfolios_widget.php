@@ -1,23 +1,17 @@
 <?php
-add_action('widgets_init', 'portfolios_load_widgets');
 
-function portfolios_load_widgets()
-{
-	register_widget('portfolios_Widget');
-}
 
 class portfolios_Widget extends WP_Widget {
 	
-	function portfolios_Widget()
-	{
-		$widget_ops = array('classname' => 'portfolios', 'description' => 'Recent works from the portfolio.');
-
-		$control_ops = array('id_base' => 'portfolio-widget');
-
-		$this->WP_Widget('portfolio-widget', 'Brad.Portfolio', $widget_ops, $control_ops);
+	public function __construct() {
+		parent::__construct(
+			'portfolio_widget', // Base ID
+			__( 'Brad Portfolio Widget', 'brad-framework' ), // Name
+			array( 'description' => __( 'Display Your Latest Work', 'brad-framework' ), ) // Args
+		);
 	}
 	
-	function widget($args, $instance)
+	public function widget($args, $instance)
 	{
 		extract($args);
 		$title = apply_filters('widget_title', $instance['title']);
@@ -51,7 +45,7 @@ class portfolios_Widget extends WP_Widget {
 		<?php echo $after_widget;
 	}
 	
-	function update($new_instance, $old_instance)
+	public function update($new_instance, $old_instance)
 	{
 		$instance = $old_instance;
 
@@ -61,7 +55,7 @@ class portfolios_Widget extends WP_Widget {
 		return $instance;
 	}
 
-	function form($instance)
+	public function form($instance)
 	{
 		$defaults = array('title' => 'Recent Works', 'number' => 6);
 		$instance = wp_parse_args((array) $instance, $defaults); ?>

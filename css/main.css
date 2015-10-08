@@ -492,7 +492,10 @@ textarea {
    z-index:100;
 }
 
-
+#top_bar .topbar-right-content,
+#top_bar .topbar-left-content{
+	margin-bottom:0;
+}
 #top_bar .social-icons {
 	margin-top:0!important;
 	white-space:nowrap;
@@ -3529,9 +3532,6 @@ blockquote.right {
 .widget_recent_entries li span {
 	color: #aaa;
 	font-size:13px;
-}
-.widget  ul  li  a:first-letter {
-	text-transform: uppercase
 }
 
 

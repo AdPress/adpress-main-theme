@@ -425,7 +425,7 @@ function brad_dropcap($atts, $content = null) {
 /*-----------------------------------------------------------------------------------*/
 /* Media */
 /*-----------------------------------------------------------------------------------*/
-add_shortcode('video','brad_video');
+add_shortcode('custom_video','brad_video');
 function brad_video($atts) {
 	extract(shortcode_atts(array(
 		'type' 	=> '',
