@@ -2928,8 +2928,6 @@ vc_map( array(
     )
 ) );
 
-
-
 /* Single Image
 ---------------------------------------------------------- */
 vc_map( array(
@@ -2958,10 +2956,40 @@ vc_map( array(
       "param_name" => "img_align",
       "value" => array(__("None", "brad-framework") => 'none', __("Left", "brad-framework") => "left", __("Right", "brad-framework") => "right", __("Center", "brad-framework") => "center")
 	),
- 
+	
+	 array(
+      "type" => "textfield",
+      "heading" => __("Image Link", "brad-framework"),
+      "param_name" => "img_link",
+      "description" => "Enter url if you want this image to have link. You can also enter youtube or vimeo video link . Video will be shown in lightbox  , if  enabled.",
+    ),
+   
+   
+   array(
+      "type" => 'dropdown',
+      "heading" => __("Link to large image?", "brad-framework"),
+      "param_name" => "img_link_large",
+      "value" => Array(__("No","brad-framework") => "no" , __("Yes, please", "brad-framework") => 'yes'),
+	  "dependency" => array("element" => "img_link" , "is_empty" => true )
+    ),
+   
+   
+   array(
+      "type" => "dropdown",
+      "heading" => __("Link Target", "brad-framework"),
+      "param_name" => "target",
+      "value" => $target_arr
+    ),
+   
+   array(
+      "type" => 'checkbox',
+      "heading" => __("Open the above link in lightbox?", "brad-framework"),
+      "param_name" => "img_lb"
+    ),
+	 
 	array(
       "type" => 'checkbox',
-      "heading" => __("Enable Lightbox Link Icon?", "brad-framework"),
+      "heading" => __("Enable overlay icon", "brad-framework"),
       "param_name" => "img_lightbox",
       "description" => __("If selected there will be lightbox Icon", "brad-framework"),
       "value" => array(__("Yes, please", "brad-framework") => 'yes')
@@ -2969,26 +2997,13 @@ vc_map( array(
 	
 	 array(
       "type" => 'brad_iconpicker',
-      "heading" => __("Lightbox Icon?", "brad-framework"),
+      "heading" => __("Icon?", "brad-framework"),
       "param_name" => "icon_lightbox",
       "value" => '',
 	  "dependency" => array("element" => "img_lightbox" , "value" => array("yes") )
     ),
 	
-    array(
-      "type" => 'dropdown',
-      "heading" => __("Lightbox Link to large image?", "brad-framework"),
-      "param_name" => "img_link_large",
-      "value" => Array(__("No","brad-framework") => "no" , __("Yes, please", "brad-framework") => 'yes'),
-	  "dependency" => array("element" => "img_lightbox" , "value" => array("yes") )
-    ),
-    array(
-      "type" => "textfield",
-      "heading" => __("Custom Image link for Lightbox", "brad-framework"),
-      "param_name" => "img_link",
-      "description" => "Enter url if you want this image to have link. You can also enter youtube or vimeo video link . Video will be shown in lightbox.",
-      "dependency" => Array('element' => "img_link_large", 'is_empty' => true, 'callback' => 'wpb_single_image_img_link_dependency_callback')
-    ),
+    
   
     array(
       "type" => "textfield",
